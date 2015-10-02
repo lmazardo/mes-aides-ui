@@ -10,6 +10,10 @@ body .ui.segment.masthead {
     font-weight: normal;
 }
 
+.masthead h2 {
+    margin-bottom: 2em;
+}
+
 #aides h2 {
     margin-top: 1em;
     margin-bottom: 2em;
