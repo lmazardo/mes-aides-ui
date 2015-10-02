@@ -1,3 +1,3 @@
 title: 'h1',
-startLink: { a: 'Commencer' },
+startLink: { a: 'Évaluer' },
 cmu: { a: 'CMU-C' },
