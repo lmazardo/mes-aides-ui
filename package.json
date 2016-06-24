@@ -44,6 +44,7 @@
     "grunt-sass": "^1.0.0",
     "grunt-svgmin": "~2.0.1",
     "grunt-usemin": "~3.0.0",
+    "jasmine-core": "^2.4.1",
     "jshint-stylish": "~2.0.1",
     "karma": "~0.12.31",
     "karma-chrome-launcher": "~0.1.2",
@@ -57,6 +58,7 @@
     "karma-script-launcher": "~0.1.0",
     "load-grunt-tasks": "~3.1.0",
     "open": "~0.0.4",
+    "requirejs": "^2.2.0",
     "supertest": "~0.15.0",
     "time-grunt": "~1.1.0"
   },
