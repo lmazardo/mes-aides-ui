@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, individuRole, situationsFamiliales, specificSituations, SituationService, IndividuService) {
+angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, $http, individuRole, situationsFamiliales, specificSituations, SituationService, IndividuService) {
     $scope.specificSituations = specificSituations;
     $scope.situationsFamiliales = situationsFamiliales;
     $scope.today = moment();
@@ -38,7 +38,7 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
         assPreconditionRemplie: false,
         scolarite: 'college',
         tauxIncapacite: 'plus80',
-        boursier: false,
+        echelonBourse: -1,
         aCharge: (individuRole == 'enfant'), // By default enfants are `à charge fiscale`, adults are not.
         fiscalementIndependant: true,
         place: false,
@@ -80,9 +80,15 @@ angular.module('ddsApp').controller('FoyerIndividuFormCtrl', function($scope, in
                 delete $scope.individu.tauxIncapacite;
             }
 
-            if (! $scope.captureEtudiantBoursier()) {
-                delete $scope.individu.boursier;
-            }
+            if (! $scope.captureEtudiantBoursier() || $scope.individu.echelonBourse == -1) {
+                delete $scope.individu.echelonBourse;
+            } // else {
+            //     $scope.individu.boursier = true;
+            //     $http.get('http://localhost:2000/api/1/parameters?name=bourses_superieur.montant.echelon_' + $scope.individu.echelonBourse).then(function(result) {
+            //         var montantBourse = result.data.parameters[0].values[0].value;
+            //         console.log(montantBourse);
+            //     });
+            // }
 
             if (! $scope.captureScolarite(form)) {
                 delete $scope.individu.scolarite;
