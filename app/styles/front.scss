@@ -1,21 +1,12 @@
 @import 'commons';
-@import 'loading-spinner';
 
-html {
-  overflow-y: scroll;
-  position: relative;
-  min-height: 100%;
-}
-
-$main-footer-height: 220px;
-$body-front-base-padding: 50px;
+$body-front-base-padding: 45px;  // .navbar's min-height
 
 h1[tabindex="-1"] {
   outline: none;
 }
 
 .body-front {
-  margin-bottom: $main-footer-height;
   padding-top: $body-front-base-padding;
   background-color: $color-background;
 }
@@ -38,79 +29,6 @@ h1[tabindex="-1"] {
 
 .table td.align-middle {
   vertical-align: middle;
-}
-
-.main-navbar {
-  @extend .navbar;
-  @extend .navbar-default;
-  @extend .navbar-fixed-top;
-  margin-bottom: 0;
-
-  .container {
-    position: relative;
-  }
-
-  .navbar-brand {
-    &.logo {
-      padding-top: 3px;
-      padding-bottom: 47px;
-    }
-
-    &.title {
-      padding-top: 15px;
-      padding-bottom: 35px;
-      position: relative;
-      left: 20px;
-    }
-
-    &.logo, &.logo:hover, &.logo:focus {
-      background-color: white;
-      position: relative;
-      z-index: 1;
-    }
-  }
-
-  .navbar-nav {
-    margin-top: 0;
-    margin-bottom: 0;
-
-    & > li > .navbar-btn {
-      margin: 21px 25px 21px 0;
-    }
-  }
-
-  .logo-beta {
-    text-align: center;
-    text-transform: uppercase;
-    position: absolute;
-    top: 26px;
-    right: -35px;
-    transform: rotate(45deg);
-    width: 150px;
-    background-color: $brand-primary;
-    color: white;
-    padding: 5px;
-    font-size: 15px;
-    font-weight: bold;
-    z-index: 10;
-  }
-}
-
-.main-footer {
-  background-color: $navbar-default-bg;
-  color: $navbar-default-color;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: $main-footer-height;
-
-  padding-top: 30px;
-  padding-bottom: 30px;
-
-  & ul li a {
-    color: white;
-    font-size: 12px;
-  }
 }
 
 .form-foyer {
@@ -217,14 +135,17 @@ $pensions: #685C79;
 $pensions-light: #cfcad7;
 $pensions-lighter: #eae7ed;
 
-$rpns: #455C7B;
-$rpns-light: #b6c4d6;
-$rpns-lighter: #d7dee8;
+$patrimoine: #455C7B;
+$patrimoine-light: #b6c4d6;
+$patrimoine-lighter: #d7dee8;
 
 $autre: #39747B;
 $autre-light: #a9d2d7;
 $autre-lighter: #cce4e7;
 
+$rpns: #8366d4;
+$rpns-light: #a8a1c8;
+$rpns-lighter: #dad7e8;
 
 .btn-default, .btn {
   &.active, &.active:focus, &.active:hover {
@@ -236,7 +157,7 @@ $autre-lighter: #cce4e7;
   }
 }
 
-@mixin ressource-category-capture($color, $color-light, $color-lighter) {
+@mixin ressource-category-capture($color-light) {
   border: 1px solid $color-light;
   border-left-width: 4px;
   margin-bottom: 10px;
@@ -257,61 +178,31 @@ $autre-lighter: #cce4e7;
 }
 
 .capture-indemnites {
-  @include ressource-category-capture($indemnites, $indemnites-light, $indemnites-lighter);
+  @include ressource-category-capture($indemnites-light);
 }
 
 .capture-pensions {
-  @include ressource-category-capture($pensions, $pensions-light, $pensions-lighter);
+  @include ressource-category-capture($pensions-light);
 }
 
 .capture-allocations {
-  @include ressource-category-capture($allocations, $allocations-light, $allocations-lighter);
+  @include ressource-category-capture($allocations-light);
 }
 
 .capture-revenusActivite {
-  @include ressource-category-capture($revenusActivite, $revenusActivite-light, $revenusActivite-lighter);
+  @include ressource-category-capture($revenusActivite-light);
 }
 
 .capture-autre {
-  @include ressource-category-capture($autre, $autre-light, $autre-lighter);
+  @include ressource-category-capture($autre-light);
 }
 
 .capture-rpns {
-  @include ressource-category-capture($rpns, $rpns-light, $rpns-lighter);
+  @include ressource-category-capture($rpns-light);
 }
 
-.intro {
-  width: 100%;
-  background: white;
-  padding: 14px;
-  padding-right: 80px;
-  color: #333;
-  z-index: 5;
-
-  .intro-content {
-    text-align: center;
-    cursor: pointer;
-
-    span {
-      margin: 0 10px;
-    }
-  }
-}
-
-.main-navbar, .intro, .body-front {
-  transition: all 0.5s linear;
-}
-
-.body-front.has-intro {
-  padding-top: $body-front-base-padding + 46px;
-}
-
-.intro.ng-enter, .intro.ng-leave.ng-leave-active {
-  margin-top: -46px;
-}
-
-.intro, .intro.ng-enter.ng-enter-active {
-  margin-top: 0px;
+.capture-patrimoine {
+  @include ressource-category-capture($patrimoine-light);
 }
 
 @mixin panel-variant-recap($color) {
@@ -366,6 +257,10 @@ $autre-lighter: #cce4e7;
 
   .recap-rpns {
     @include panel-variant-recap($rpns);
+  }
+
+  .recap-patrimoine {
+    @include panel-variant-recap($patrimoine);
   }
 }
 
@@ -465,6 +360,10 @@ $autre-lighter: #cce4e7;
 
   &.rpns {
     @include panel-montant-variant($rpns, $rpns-light, $rpns-lighter);
+  }
+
+  &.patrimoine {
+    @include panel-montant-variant($patrimoine-light, $patrimoine-light, $patrimoine-lighter);
   }
 }
 

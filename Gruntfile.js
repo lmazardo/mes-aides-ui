@@ -222,7 +222,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/views',
-          src: ['*.html', 'partials/**/*.html'],
+          src: ['**/*.html'],
           dest: '<%= yeoman.dist %>/views'
         }]
       }
@@ -252,7 +252,7 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,png,txt}',
             'bower_components/**/*',
-            'img/{,*/}*.{png,jpg,jpeg,gif}',
+            'img/**/*',
             'fonts/**/*',
             'resources/**/*',
             'documents/**/*',
@@ -307,12 +307,7 @@ module.exports = function (grunt) {
     htmlrefs: {
       dist: {
         src: './dist/views/front.html',
-        dest: './dist/views/front.html',
-        options: {
-          includes: {
-            piwik: './piwik.inc'
-          }
-        }
+        dest: './dist/views/front.html'
       }
     }
   });

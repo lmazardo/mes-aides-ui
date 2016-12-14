@@ -24,14 +24,17 @@
 
     <meta name="fragment" content="!" />
 
-    <!-- ref:include piwik -->
-    <!-- endref -->
-
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/header.css">
     <link rel="stylesheet" href="/styles/front.css">
+    <link rel="stylesheet" href="/styles/footer.css">
     <link rel="stylesheet" href="/styles/homepage.css">
     <link rel="stylesheet" href="/styles/individu-form.css">
     <link rel="stylesheet" href="/styles/resources.css">
     <link rel="stylesheet" href="/styles/logement.css">
+    <link rel="stylesheet" href="/styles/resultat.css">
+    <link rel="stylesheet" href="/js/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/styles/text-container.css">
 
     <base href="/">
   </head>
@@ -46,34 +49,33 @@
       <br>sans droits d'administration sur votre poste,
       <a href="https://www.google.com/chrome/browser/index.html?standalone=1">faites-le vous-même</a> !
     </div>
+    <script type="text/javascript">
+      window.incompatibleBrowser = true;
+    </script>
     <![endif]-->
 
-    <header role="banner">
-      <nav role="navigation" class="main-navbar" ng-class="{'has-intro': showIntro}">
-        <div class="intro-holder">
-          <div class="intro" ng-cloak ng-if="showIntro">
-            <div class="intro-content">
-              <span ng-click="hideIntro()">
-                <strong>Service expérimental</strong>.
-                Ici l'État innove avec la société civile pour offrir aux usagers le service public de demain.
-              </span>
-              <span>
-                <a ui-sref="a_propos" title="En savoir plus sur ce service expérimental"><strong>En savoir plus…</strong></a>
-              </span>
-              <span class="fa fa-close" ng-click="hideIntro()" tabindex="0" role="button" aria-label="Supprimer ce message"></span>
-            </div>
-            <div class="clearfix"></div>
+    <header role="banner" class="navbar navbar-default navbar-fixed-top">
+      <div class="intro-holder">
+        <div class="intro" ng-cloak ng-if="showIntro">
+          <div class="intro-content">
+            <span ng-click="hideIntro()">
+              <strong>Service expérimental</strong>.
+              Ici l'État innove avec la société civile pour offrir aux usagers le service public de demain.
+            </span>
+            <span>
+              <a ui-sref="a-propos" title="En savoir plus sur ce service expérimental"><strong>En savoir plus…</strong></a>
+            </span>
+            <span class="fa fa-close" ng-click="hideIntro()" tabindex="0" role="button" aria-label="Supprimer ce message"></span>
           </div>
         </div>
-        <div class="container">
-          <ul class="nav navbar-nav">
-            <li><a ui-sref="home" class="navbar-brand logo hidden-xs" title="Accueil - mes-aides.gouv.fr"><img src="img/logo_marianne.png" alt="Accueil - mes-aides.gouv.fr"></a></li>
-            <li><a ui-sref="home" class="navbar-brand title" title="Accueil - mes-aides.gouv.fr">mes-aides.gouv.fr</a></li>
-          </ul>
-          <loading-spinner></loading-spinner>
-        </div>
-        <div class="logo-beta">Bêta</div>
+      </div>
+      <nav class="container">
+        <a ui-sref="home" class="navbar-brand" title="Accueil">mes-aides.gouv.fr</a>
+
+        <loading-spinner class="navbar-right"></loading-spinner>
       </nav>
+
+      <div id="beta-ribbon">Bêta</div>
     </header>
 
     <div class="content">
@@ -82,35 +84,23 @@
       </ui-view>
     </div>
 
-    <footer class="main-footer" role="contentinfo">
+    <footer>
       <nav class="container">
-        <div class="col-md-3">
-          <h4>Mes aides</h4>
-          <ul class="list-unstyled">
-            <li><a ui-sref="a_propos">À propos</a></li>
-            <li><a ui-sref="cgu">Mentions légales</a></li>
-            <li><a ui-sref="contribuez">Contribuez !</a></li>
-            <li><a ui-sref="faq">FAQ</a></li>
-            <li><a ui-sref="communication">Communication</a></li>
-            <li><a href="mailto:contact@mes-aides.gouv.fr ">Contact</a></li>
-          </ul>
-        </div>
-        <div class="col-md-2 hidden-sm hidden-xs">
-          <h4>Partenaires</h4>
-          <ul class="list-unstyled">
-            <li><a target="_blank" rel="noopener" href="http://service-public.fr/" title="service-public.fr - nouvelle fenêtre">service-public.fr</a></li>
-            <li><a target="_blank" rel="noopener" href="http://ameli.fr/" title="ameli.fr - nouvelle fenêtre">ameli.fr</a></li>
-            <li><a target="_blank" rel="noopener" href="http://www.caf.fr/" title="caf.fr - nouvelle fenêtre">caf.fr</a></li>
-            <li><a target="_blank" rel="noopener" href="https://www.lassuranceretraite.fr/" title="lassuranceretraite.fr - nouvelle fenêtre">lassuranceretraite.fr</a></li>
-            <li><a target="_blank" rel="noopener" href="http://www.modernisation.gouv.fr/le-sgmap" title="SGMAP - nouvelle fenêtre">SGMAP</a></li>
-            <li><a target="_blank" rel="noopener" href="http://www.openfisca.fr/" title="OpenFisca - nouvelle fenêtre">OpenFisca</a></li>
-          </ul>
-        </div>
-        <div class="col-md-offset-4 col-md-3">
-          <ul class="list-unstyled">
-            <li><a target="_blank" rel="noopener" href="https://twitter.com/mesaides" title="Suivez nous sur Twitter - nouvelle fenêtre"><i class="fa fa-twitter" aria-hidden="true" role="presentation"></i> Suivez-nous sur Twitter</a></li>
-          </ul>
-        </div>
+        <ul class="col-md-4 list-unstyled">
+          <li><span class="fa fa-fw fa-life-ring" aria-hidden="true"></span>&nbsp;<a ui-sref="sos">SOS</a></li>
+          <li><span class="fa fa-fw fa-paperclip" aria-hidden="true"></span>&nbsp;<a ui-sref="cgu">Conditions d'utilisation</a></li>
+          <li><span class="fa fa-fw fa-envelope" aria-hidden="true"></span>&nbsp;<a href="mailto:contact@mes-aides.gouv.fr ">Contact</a></li>
+        </ul>
+        <ul class="col-md-4 list-unstyled">
+          <li><span class="fa fa-fw fa-question-circle" aria-hidden="true"></span>&nbsp;<a ui-sref="a-propos">À propos</a></li>
+          <li><span class="fa fa-fw fa-bullhorn" aria-hidden="true"></span>&nbsp;<a ui-sref="communication">Supports de communication</a></li>
+          <li><span class="fa fa-fw fa-building-o" aria-hidden="true"></span>&nbsp;<a href="http://les-aides.fr">Les aides pour les entreprises</a></li>
+        </ul>
+        <ul class="col-md-4 list-unstyled">
+          <li><span class="fa fa-fw fa-newspaper-o" aria-hidden="true"></span>&nbsp;<a target="_blank" rel="noopener" href="http://eepurl.com/bD9PNP">Abonnez-vous à nos informations</a></li>
+          <li><span class="fa fa-fw fa-twitter" aria-hidden="true"></span>&nbsp;<a target="_blank" rel="noopener" href="https://twitter.com/mesaides">Suivez-nous sur Twitter</a></li>
+          <li><span class="fa fa-fw fa-pencil" aria-hidden="true"></span>&nbsp;<a ui-sref="ameliorer">Améliorez ce site</a></li>
+        </ul>
       </nav>
     </footer>
 
@@ -142,7 +132,6 @@
 
     <script src="js/controllers/body.js"></script>
     <script src="js/controllers/homepage.js"></script>
-    <script src="js/controllers/contribuez.js"></script>
     <script src="js/controllers/foyer.js"></script>
     <script src="js/controllers/foyer/individuForm.js"></script>
     <script src="js/controllers/foyer/conjoint.js"></script>
@@ -185,5 +174,30 @@
     <!-- endbuild -->
 
     <script src="/js/lib/cleave.js/dist/cleave.min.js"></script>
+
+    <script src="/js/lib/angulartics/dist/angulartics.min.js"></script>
+    <script src="/js/lib/angulartics-piwik/dist/angulartics-piwik.min.js"></script>
+
+    <!-- Piwik -->
+    <script type="text/javascript">
+      var _paq = _paq || [];
+      _paq.push(['setDomains', ['*.mes-aides.gouv.fr']]);
+      _paq.push(['enableLinkTracking']);
+
+      (function() {
+      var incompatibleBrowser = window.incompatibleBrowser;
+      if (incompatibleBrowser) {
+        _paq.push(['trackPageView']);  // for others, will be done through angulartics
+        _paq.push(['trackEvent', 'incompatibleBrowser', true]);
+      }
+      var u='https://stats.data.gouv.fr/';
+      _paq.push(['setTrackerUrl', u+'piwik.php']);
+      _paq.push(['setSiteId', '9']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <noscript><p><img src="https://stats.data.gouv.fr/piwik.php?idsite=9&rec=1&action_name=no-js" style="border:0;" alt="" /></p></noscript>
+    <!-- End Piwik Code -->
   </body>
 </html>
